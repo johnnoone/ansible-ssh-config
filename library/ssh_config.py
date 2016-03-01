@@ -641,6 +641,10 @@ class ConfigParser(object):
                             key, value_
                         )
                     host_item_content += sub_content
+                elif value is True:
+                    host_item_content += "    {0} yes\n".format(key)
+                elif value is False:
+                    host_item_content += "    {0} no\n".format(key)
                 else:
                     host_item_content += "    {0} {1}\n".format(
                         key, value
@@ -707,7 +711,7 @@ def main():
             proxycommand=dict(default=None, type='str'),
             strict_host_key_checking=dict(
                 default=None,
-                choices=['yes', 'no', 'ask']
+                choices=['yes', 'no', 'ask', True, False]
             ),
         ),
         supports_check_mode=True

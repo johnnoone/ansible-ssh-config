@@ -66,3 +66,24 @@
     host=example.com
     strict_host_key_checking=yes
 - include: _assert.yml option=stricthostkeychecking value=yes
+
+- name: Test host key checking with lax config
+  ssh_config:
+    user: vagrant
+    host: example.com
+    strict_host_key_checking: true
+- include: _assert.yml option=stricthostkeychecking value=yes
+
+- name: Test no host key checking with lax config
+  ssh_config:
+    user: vagrant
+    host: example.com
+    strict_host_key_checking: false
+- include: _assert.yml option=stricthostkeychecking value=no
+
+- name: Test ask host key checking with lax config
+  ssh_config:
+    user: vagrant
+    host: example.com
+    strict_host_key_checking: ask
+- include: _assert.yml option=stricthostkeychecking value=ask
